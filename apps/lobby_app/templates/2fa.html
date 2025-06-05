@@ -1,0 +1,30 @@
+<!-- templates/2fa.html -->
+{% extends 'base.html' %}
+{% block title %}2FA - GLHF{% endblock %}
+
+{% block extra_css %}
+<style>
+  body {
+    background: url("{{ url_for('lobby.static', filename='img/lobby.png') }}") no-repeat center center fixed;
+    background-size: cover;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="form-container" style="width: 100%; max-width: 420px;">
+    <div class="glhf-logo">2FA</div>
+    <form method="POST" action="/2fa">
+      <div class="mb-3">
+        <label for="code" class="form-label">Enter the 4-digit code</label>
+        <input type="text" class="form-control" id="code" name="code" maxlength="4" pattern="\d{4}">
+      </div>
+      {% if error %}
+          <div class="login-error">{{ error|safe }}</div>
+      {% endif %}
+      <button type="submit" class="btn btn-warning w-100">VALIDATE</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
+
+
+/* Global layout */
+html, body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: 'Share Tech Mono', monospace;
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+/* Neon Logo */
+.glhf-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  color: #00ff88;
+  letter-spacing: 6px;
+  text-shadow:
+    0 0 5px #00ff88,
+    0 0 15px #00ff88,
+    0 0 30px #00ff88,
+    0 0 60px #00ffcc;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+/* Transparent-glass login panel */
+.form-container {
+  background: rgba(20, 20, 20, 0.25);
+  border: 1px solid #ffffff44;
+  box-shadow: 0 0 16px #ffffff33;
+  backdrop-filter: blur(12px);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  color: #f8f8f8;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-container:hover {
+  box-shadow: 0 0 30px #ffffffaa;
+}
+
+.form-container form > .mb-3 {
+  margin-bottom: 1.2rem;
+}
+
+/* Form labels */
+.form-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+  color: #ffffffcc;
+}
+
+/* Input fields */
+input.form-control {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  box-shadow: inset 0 0 3px #ffffff33;
+  transition: all 0.2s ease;
+}
+
+input.form-control::placeholder {
+  color: #ccccccaa;
+}
+
+input.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 6px #ffffffaa;
+  outline: none;
+  color: #ffffff;
+}
+
+/* Connect button */
+button.btn-warning {
+  background-color: #ffffff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  box-shadow: 0 0 10px #ffffff88;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button.btn-warning:hover {
+  background-color: #eaeaea;
+  box-shadow: 0 0 20px #ffffffcc;
+}
+
+/* Register link */
+a.text-secondary {
+  color: #ccccccaa;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+a.text-secondary:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+
+
+.notebook-links {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  font-family: monospace;
+  z-index: 1;
+}
+
+.notebook-btn {
+  background-color: #111;
+  color:  #ff0;
+  border: 1px dashed  #ff0;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  text-shadow: 0 0 4px  #ff0;
+  box-shadow: 0 0 10px #001a00;
+  transition: all 0.2s ease-in-out;
+}
+
+.notebook-btn:hover {
+  background-color: #000;
+  color: #ff0;
+  border-color: #ff0;
+  text-shadow: 0 0 6px #ff0;
+  box-shadow: 0 0 12px #333;
+}
+
+.login-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff5555;
+  color: #ff6666;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  text-shadow: 0 0 4px #ff4444;
+}
+
