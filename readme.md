@@ -1,6 +1,7 @@
 # Good Luck, Have Fun!
 
-how to start
+`docker pull coriscope/ghlf:v0.1.0-alpha`
 
+`docker run -p 1337:1337 coriscope/ghlf:v0.1.0-alpha`
 
-how to reset
+`http://localhost:1337`

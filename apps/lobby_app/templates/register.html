@@ -1,45 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}Register - GLHF{% endblock %}
-
-{% block extra_css %}
-<style>
-  body {
-    background: url("{{ url_for('lobby.static', filename='img/lobby.png') }}") no-repeat center center fixed;
-    background-size: cover;
-  }
-  .glhf-logo.register {
-    font-size: 2.8rem;
-    color: #00ffff;
-    text-shadow:
-      0 0 5px #00ffff,
-      0 0 15px #00ffff,
-      0 0 30px #00ffff,
-      0 0 60px #00ffff;
-  }
-
-  .btn-cyan {
-    background-color: #00ffff;
-    color: #000;
-    border: none;
-    font-weight: bold;
-    padding: 0.75rem;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    margin-top: 0.5rem;
-    box-shadow: 0 0 10px #00ffff88;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-
-  .btn-cyan:hover {
-    background-color: #ccffff;
-    box-shadow: 0 0 20px #00ffffcc;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="form-container" style="width: 100%; max-width: 420px;">
@@ -48,6 +8,10 @@
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" id="username" name="username" value="{{ username }}">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
@@ -63,16 +27,9 @@
     </form>
   </div>
 </div>
-
-{% block extra_js %}
-<script>
-</script>
-{% endblock %}
-
 <div class="notebook-links">
   <a href="/download/readme.txt" class="notebook-btn">💾 readme.txt</a>
   <a href="/download/nicks.txt" class="notebook-btn">💾 nicks.txt</a>
   <a href="/download/rockyou.txt" class="notebook-btn">💾 rockyou.txt</a>
 </div>
-
 {% endblock %}

@@ -7,4 +7,4 @@ app.secret_key = 'super_insecure_lobby_key'
 app.register_blueprint(lobby_bp)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=1337)
+    app.run(debug=False, port=1337)

@@ -1,18 +1,24 @@
-import time
+import json
 import base64
 
-def generate_token(username, role='user'):
-    raw = f"{username}:{int(time.time())}:{role}"
+def generate_token(username, role='user', user_id=0):
+    payload = {
+        "u": username,
+        "r": role,
+        "id": user_id,
+        "exp": 9999999999
+    }
+    raw = json.dumps(payload, separators=(',', ':'))
     return base64.b64encode(raw.encode()).decode()
 
 def decode_token(token):
     try:
-        decoded = base64.b64decode(token.encode()).decode()
-        username, timestamp, role = decoded.split(":")
+        data = json.loads(base64.b64decode(token.encode()).decode())
         return {
-            "username": username,
-            "timestamp": int(timestamp),
-            "role": role
+            "username": data.get("u"),
+            "role": data.get("r"),
+            "id": data.get("id"),
+            "exp": data.get("exp")
         }
     except Exception:
         return None

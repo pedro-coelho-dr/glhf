@@ -31,14 +31,16 @@ def load_pending_users():
         print(f"[ERROR] Failed to load pending_users.json: {e}")
         return []
 
-def add_pending_user(username: str, password: str):
+def add_pending_user(username: str, password: str, email: str = ''):
     pending = load_pending_users()
     pending.append({
         'username': username,
-        'password': hash_password(password)
+        'password': password,
+        'email': email
     })
     try:
         with open(PENDING_FILE, 'w') as f:
             json.dump(pending, f, indent=2)
     except Exception as e:
         print(f"[ERROR] Failed to write to pending_users.json: {e}")
+

@@ -75,16 +75,5 @@ Keep your notes organized.
 You'll need them to write your report later.
 
 --------------------------------------------------------
-
-Enumeration
-- [ ] Username enumeration via timing side-channel
-- [ ] Username enumeration via response content differences
-
-Brute Force
-- [ ] Online password brute-force without rate limiting
-- [ ] Targeted brute-force behavior
-
-
---------------------------------------------------------
-GHLF // Web Vuln Lab v0.1
-by Corisco // 2025
+GHLF v0.1.0-alpha
+Corisco 2025
