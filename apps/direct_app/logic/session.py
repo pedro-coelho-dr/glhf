@@ -5,20 +5,6 @@ from pathlib import Path
 DATA_DIR = Path(__file__).resolve().parents[2] / 'data'
 USERS_FILE = DATA_DIR / 'users.json'
 
-
-def generate_token(username: str, role: str = 'user', user_id: int = 0) -> str:
-
-    token = {
-        "u": username,
-        "id": user_id,
-        "r": role,         
-        "exp": 1669766400, 
-        "v": 1             
-    }
-    raw = json.dumps(token, separators=(',', ':'))
-    return base64.b64encode(raw.encode()).decode()
-
-
 def decode_token(token: str):
     try:
         decoded = base64.b64decode(token.encode()).decode()

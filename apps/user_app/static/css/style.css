@@ -1,0 +1,130 @@
+/* === FONT IMPORT === */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=VT323&family=Press+Start+2P&family=Exo+2:wght@700&display=swap');
+
+/* === GLOBAL === */
+body {
+  background: url("/user_static/img/bg.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #e0e0e0;
+  font-family: 'Exo 2', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 960px;
+}
+
+/* === PROFILE CARD === */
+.profile-card {
+  display: flex;
+  align-items: center;
+  background-color: rgba(5, 5, 5, 0.9);
+  border: 2px solid rgba(0, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 3rem auto;
+  box-shadow:
+    0 0 6px rgba(255, 0, 0, 0.5),
+    0 0 12px rgba(0, 255, 255, 0.4),
+    0 0 18px rgba(0, 255, 0, 0.2);
+  max-width: 960px;
+  backdrop-filter: blur(12px);
+}
+
+.profile-avatar {
+  width: 144px;
+  height: 144px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #00ffff;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  margin-right: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 6px rgba(255, 0, 0, 0.5),
+    0 0 12px rgba(0, 255, 0, 0.4),
+    0 0 18px rgba(0, 255, 255, 0.3);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.6rem;
+  color: #f0f0f0;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.05em;
+  text-shadow:
+    1px 0 red,
+    -1px 0 cyan,
+    0 1px lime;
+}
+
+.profile-info p {
+  font-family: 'VT323', monospace;
+  font-size: 1.25rem;
+  color: #b2f0ff;
+  margin: 0;
+  white-space: pre-wrap;
+  font-style: italic;
+  opacity: 0.95;
+  position: relative;
+}
+
+.profile-info p::before,
+.profile-info p::after {
+  content: '"';
+  color: #88ffff;
+  font-weight: bold;
+}
+/* === EDIT FORM: GITHUB-LIKE + NAVBAR MATCH === */
+.edit-profile-form {
+  background-color: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  max-width: 600px;
+  box-shadow: none;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.edit-profile-form h5 {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.edit-profile-form .form-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 0.25rem;
+}
+
+.edit-profile-form .form-control {
+  background-color: #121212;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+.edit-profile-form .form-control:focus {
+  background-color: #121212;
+  color: #ffffff;
+  border-color: #8d21f3;
+  box-shadow: 0 0 0 2px rgba(141, 33, 243, 0.4);
+}
+
+.edit-profile-form .btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}

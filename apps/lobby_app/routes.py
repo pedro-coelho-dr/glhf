@@ -4,22 +4,16 @@ import time
 from pathlib import Path
 from uuid import uuid4
 
+from . import lobby_bp
 from apps.lobby_app.logic.users import load_users, add_pending_user, hash_password
-from apps.lobby_app.logic.session import generate_token, decode_token
+from apps.lobby_app.logic.session import generate_token, validate_token
 from apps.lobby_app.logic.auth_state import save_pre_auth, load_pre_auth, delete_pre_auth, get_attempts, increment_attempt
 from apps.lobby_app.logic.two_fa import generate_or_get_global_2fa_code
 
 
-lobby_bp = Blueprint(
-    'lobby',
-    __name__,
-    template_folder='templates',
-    static_folder='static',
-    static_url_path='/lobby_static'
-)
-
-
 DATA_DIR = Path(__file__).resolve().parents[1] / 'data'
+DOWNLOAD_DIR = DATA_DIR / 'download'
+
 
 FAST_DELAY = 0.05
 SLOW_DELAY = 0.1
@@ -27,12 +21,12 @@ SLOW_DELAY = 0.1
 @lobby_bp.route('/')
 def index():
     token = request.cookies.get('session_id')
-    user = decode_token(token) if token else None
+    user = validate_token(token)
 
     if not user:
         return redirect('/login')
 
-    return render_template('index.html', username=user['username'])
+    return redirect('/profile')
 
 @lobby_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -88,7 +82,7 @@ def two_fa():
     if request.method == 'POST':
         increment_attempt(token)
 
-        if get_attempts(token) >= 3:
+        if get_attempts(token) >= 4:
             delete_pre_auth(token)
             return redirect('/login')
 
@@ -98,7 +92,14 @@ def two_fa():
         if code_input == correct_code:
             session_token = generate_token(user['username'], user['role'], user['id'])
             resp = make_response(redirect('/'))
-            resp.set_cookie('session_id', session_token, path='/', httponly=True)
+            resp.set_cookie(
+                'session_id',
+                session_token,
+                path='/', 
+                httponly=False,
+                secure=False,
+                samesite=None
+            )
             resp.delete_cookie('pre_auth_token')
             delete_pre_auth(token)
             return resp
@@ -107,9 +108,6 @@ def two_fa():
             error = 'Invalid code.'
 
     return render_template('2fa.html', error=error)
-
-
-
 
 
 @lobby_bp.route('/register', methods=['GET', 'POST'])
@@ -140,10 +138,17 @@ def register():
     return render_template('register.html', message=message, username=submitted_username)
 
 
+@lobby_bp.route('/logout')
+def logout():
+    resp = make_response(redirect('/login'))
+    resp.delete_cookie('session_id', path='/')
+    return resp
+
+
 @lobby_bp.route('/download/nicks.txt')
 def download_nicks():
     return send_file(
-        DATA_DIR / 'nicks.txt',
+        DOWNLOAD_DIR / 'nicks.txt',
         as_attachment=True,
         download_name='nicks.txt'
     )
@@ -152,7 +157,7 @@ def download_nicks():
 @lobby_bp.route('/download/rockyou.txt')
 def download_rockyou():
     return send_file(
-        DATA_DIR / 'rockyou.txt',
+        DOWNLOAD_DIR / 'rockyou.txt',
         as_attachment=True,
         download_name='rockyou.txt'
     )
@@ -160,7 +165,7 @@ def download_rockyou():
 @lobby_bp.route('/download/readme.txt')
 def download_readme():
     return send_file(
-        DATA_DIR / 'readme.txt',
+        DOWNLOAD_DIR / 'readme.txt',
         as_attachment=True,
         download_name='readme.txt'
     )

@@ -1,11 +1,11 @@
 from flask import Blueprint
 
-lobby_bp = Blueprint(
-    'lobby',
+direct_bp = Blueprint(
+    'direct',
     __name__,
     template_folder='templates',
     static_folder='static',
-    static_url_path='/lobby_static'
+    static_url_path='/direct_static'
 )
 
 from . import routes

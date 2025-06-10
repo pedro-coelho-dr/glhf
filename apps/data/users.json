@@ -4,13 +4,17 @@
     "username": "windows96",
     "password": "3113c9e45ff0b8e19f06e443deaa361cedb08d420b0e63606219cd5881f5fa27",
     "role": "user",
-    "email": "windows96@example.com"
+    "email": "windows96@example.com",
+    "avatar": "",
+    "bio": "teste teste teste"
   },
   {
     "id": 9001,
     "username": "root",
     "password": "1a06df824ed741b53c785079a6347f00eec5af82f9850775409ca69dff4068a6",
     "role": "admin",
-    "email": "root@example.com"
+    "email": "root@example.com",
+    "avatar": "",
+    "bio": "asasd asd asd asd asdas"
   }
 ]

@@ -4,7 +4,7 @@ import hashlib
 from pathlib import Path
 
 TWO_FA_FILE = Path(__file__).resolve().parents[2] / 'data' / 'global_2fa_code.json'
-TWO_FA_TTL = 30
+TWO_FA_TTL = 15
 
 def generate_or_get_global_2fa_code():
     current_time = int(time.time())
