@@ -1,0 +1,209 @@
+/* === FONT IMPORT === */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=VT323&family=Press+Start+2P&family=Exo+2:wght@700&display=swap');
+
+/* === GLOBAL === */
+body {
+  background: url("/user_static/img/bg.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #e0e0e0;
+  font-family: 'Exo 2', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 960px;
+}
+/* === PROFILE CARD === */
+.profile-card {
+  display: flex;
+  align-items: center;
+  background-color: rgba(5, 5, 5, 0.9);
+  border: 2px solid rgba(0, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 3rem auto;
+  box-shadow:
+    0 0 6px rgba(255, 0, 0, 0.5),
+    0 0 12px rgba(0, 255, 255, 0.4),
+    0 0 18px rgba(0, 255, 0, 0.2);
+  width: 720px;
+  height: 260px;
+  max-width: 720px;
+  min-width: 720px;
+  min-height: 260px;
+  max-height: 260px;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: visible;
+}
+
+.profile-avatar {
+  width: 144px;
+  min-width: 144px;
+  height: 144px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #00ffff;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  margin-right: 2rem;
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 6px rgba(255, 0, 0, 0.5),
+    0 0 12px rgba(0, 255, 0, 0.4),
+    0 0 18px rgba(0, 255, 255, 0.3);
+}
+
+.profile-info {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 3;
+  padding-right: 1.5rem;
+}
+
+.profile-info h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.6rem;
+  color: #f0f0f0;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.05em;
+  text-shadow:
+    1px 0 red,
+    -1px 0 cyan,
+    0 1px lime;
+  position: relative;
+  z-index: 3;
+}
+
+.profile-info h2.glitch {
+  animation: glitch 0.17s infinite alternate linear;
+  color: #fff1f8;
+  text-shadow:
+    2px 0 #ff005a,
+    -2px 0 #00f0ff,
+    0 1px #fff,
+    0 -1px #f0f;
+}
+
+.profile-info p.profile-bio {
+  font-family: 'VT323', monospace;
+  font-size: 1.25rem;
+  color: #b2f0ff;
+  margin: 0;
+  font-style: italic;
+  opacity: 0.95;
+  position: relative;
+  max-width: 540px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  z-index: 3;
+}
+
+.profile-info p.profile-bio.glitch {
+  animation: glitch 0.17s infinite alternate linear;
+  color: #00fff0;
+}
+
+.profile-info p.profile-bio::before,
+.profile-info p.profile-bio::after {
+  content: '"';
+  color: #88ffff;
+  font-weight: bold;
+}
+
+/* === EDIT FORM === */
+.edit-profile-form {
+  background-color: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  width: 720px;
+  min-width: 720px;
+  max-width: 720px;
+  margin: 1.5rem auto 0 auto;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 0 6px rgba(255,0,0,0.3),
+              0 0 12px rgba(0,255,255,0.15);
+  padding: 0;
+  position: relative;
+}
+
+.edit-profile-form textarea {
+  resize: none;
+  min-height: 90px;
+  max-height: 90px;
+}
+
+
+.edit-form-inner {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.edit-profile-form form {
+  padding: 0;
+}
+
+.edit-profile-form #file-chosen {
+  color: #bbbbbb !important;
+  opacity: 1;
+}
+
+
+.edit-profile-form .form-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 0.25rem;
+}
+
+.edit-profile-form .form-control {
+  background-color: #121212;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+.edit-profile-form .form-control:focus {
+  background-color: #121212;
+  color: #ffffff;
+  border-color: #8d21f3;
+  box-shadow: 0 0 0 2px rgba(141, 33, 243, 0.4);
+}
+
+.edit-profile-form .btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+.edit-profile-form hr {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.divider-h {
+  width: 100%;
+  height: 1px;
+  background: #444;
+  border: none;
+  opacity: 0.5;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .divider-v-md {
+    border-right: 1px solid #444;
+  }
+}

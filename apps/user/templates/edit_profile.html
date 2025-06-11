@@ -1,0 +1,66 @@
+{% extends "public_profile.html" %}
+
+{% block edit %}
+<div class="d-flex justify-content-center mt-2">
+  <div class="card edit-profile-form text-light">
+    <div class="edit-form-inner py-4">
+      <!-- Signature -->
+      <form method="post" action="/profile/edit_bio" class="mb-0">
+        <label for="signature" class="form-label">Signature</label>
+          <textarea class="form-control form-control-sm" id="signature" name="bio" rows="3" maxlength="160"
+            oninput="limitWords(this, 20)">{{ user.bio or '' }}</textarea>
+          <input type="hidden" name="user_id" value="{{ user.id }}">
+          <div class="d-flex justify-content-end align-items-center mt-1">
+          <button type="submit" class="btn btn-sm btn-outline-light">Save</button>
+        </div>
+      </form>
+
+      <div class="divider-h my-4"></div>
+
+      <!-- Avatar | Password -->
+      <div class="row align-items-start gx-4">
+        <!-- Avatar -->
+        <div class="col-md-6 pe-md-4 divider-v-md">
+          <form method="post" action="/profile/edit_avatar" enctype="multipart/form-data" class="mb-0">
+            <label for="avatar" class="form-label">Avatar</label>
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <label for="avatar" class="btn btn-sm btn-outline-light mb-0">Pick</label>
+              <input type="file" id="avatar" name="avatar" class="d-none" onchange="showFileName(this)">
+              <span id="file-chosen" class="text-muted small">No file selected</span>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-sm btn-outline-light align-self-end">Upload</button>
+            </div>
+          </form>
+        </div>
+        <!-- Password -->
+        <div class="col-md-6 ps-md-4">
+          <form method="post" action="/profile/edit_password" class="mb-0">
+            <label for="password" class="form-label">New Password</label>
+            <input type="password" class="form-control form-control-sm mb-3" id="password" name="password">
+            <label for="confirm" class="form-label">Confirm</label>
+            <input type="password" class="form-control form-control-sm mb-3" id="confirm" name="confirm">
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-sm btn-outline-light">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function limitWords(el, maxWords) {
+  const words = el.value.split(/\s+/).filter(Boolean);
+  if (words.length > maxWords) {
+    el.value = words.slice(0, maxWords).join(" ");
+  }
+}
+function showFileName(input) {
+  const fileName = input.files.length > 0 ? input.files[0].name : "No file selected";
+  document.getElementById("file-chosen").textContent = fileName;
+}
+</script>
+{% endblock %}

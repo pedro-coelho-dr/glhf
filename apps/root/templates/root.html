@@ -1,0 +1,40 @@
+{% extends "base_root.html" %}
+{% block title %}GLHF - root{% endblock %}
+
+{% block content %}
+<div class="arch-terminal-root">
+
+  <!-- Webshell -->
+  <div class="terminal-block">
+    <pre class="terminal-title">root@glhf:~</pre>
+    <form method="post" autocomplete="off" class="terminal-form">
+      <span class="prompt"># </span>
+      <input type="text" name="cmd"
+        class="terminal-input"
+        autofocus autocomplete="off"
+        placeholder=""
+        onkeydown="if(event.key=='Enter'){this.form.submit();}">
+    </form>
+    <pre class="command-output">{{ output|safe }}</pre>
+  </div>
+
+  <!-- Download source -->
+  <div class="terminal-block">
+    <span class="terminal-title">[download]</span>
+    <a href="/root/download_source" class="download-link">source_leak.tar</a>
+  </div>
+
+  <!-- pending_users.json -->
+  <div class="terminal-block">
+    <span class="terminal-title">pending_users.json</span>
+    <pre class="json-output">{{ pending }}</pre>
+  </div>
+
+  <!-- users.json -->
+  <div class="terminal-block">
+    <span class="terminal-title">users.json</span>
+    <pre class="json-output">{{ users }}</pre>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+html, body {
+    background: #070707 !important;
+    color: #38ff52 !important;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+.arch-terminal-root {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.terminal-block {
+    margin: 0 0 14px 0;
+    padding: 0 0 0 0;
+    width: 100vw;
+    border-radius: 0;
+    background: transparent;
+}
+
+.terminal-title {
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    color: #49ffc2;
+    font-size: 1.09rem;
+    margin-bottom: 2px;
+    margin-left: 0;
+    letter-spacing: 0.3px;
+}
+
+.prompt {
+    color: #38ff52;
+    font-family: monospace;
+    font-size: 1.16rem;
+    margin-right: 4px;
+}
+
+.terminal-input {
+    background: #070707;
+    color: #38ff52;
+    border: none;
+    font-family: 'Fira Mono', monospace;
+    font-size: 1.12rem;
+    outline: none;
+    padding: 1.5px 0 1.5px 0;
+    width: 80vw;
+    margin-left: 0;
+    margin-top: 2px;
+}
+
+.terminal-input:focus {
+    outline: none;
+}
+
+.command-output {
+    color: #50fa7b;
+    background: transparent;
+    border-radius: 0;
+    padding: 8px 0 8px 0;
+    min-height: 40px;
+    margin-top: 8px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 1rem;
+}
+
+.json-output {
+    background: transparent !important;
+    color: #38ff52 !important;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    margin-left: 0;
+    padding: 0;
+}
+
+.download-link {
+    border: 1px solid #49ffc2;
+    color: #49ffc2;
+    background: transparent;
+    font-family: monospace;
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-left: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+.download-link:hover {
+    background: #49ffc2;
+    color: #070707;
+    border: 1px solid #49ffc2;
+}
