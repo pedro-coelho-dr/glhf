@@ -55,3 +55,16 @@
   background-color: #3a1a1a;
 }
 
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 22px;
+  vertical-align: middle;
+}
+.editor-tab.reset:hover .material-symbols-outlined {
+  color: #38bdf8;
+}
+.editor-tab.exit:hover .material-symbols-outlined {
+  color: #f38ba8;
+}
+
+

@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --mircbg: #ece9d8;
+  --mirclight: #fff;
+  --mircgray: #d4d0c8;
+  --mircdark: #a6a6a6;
+  --mircblue: #005fff;
+  --mircpurple: #af00ff;
+  --mircred: #d70000;
+  --mircblack: #222;
+}
+
+body {
+  background: var(--mircbg);
+  color: var(--mircblack);
+  font-family: 'VT323', Consolas, 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 450px;
+  margin: 32px auto;
+  padding: 0;
+}
+
+/* Cards */
+.card {
+  border: 2.5px solid var(--mircdark);
+  background: var(--mirclight);
+  margin-bottom: 22px;
+}
+
+/* Title bars */
+.card-header {
+  background: var(--mircgray);
+  font-weight: bold;
+  font-family: 'VT323', monospace;
+  font-size: 1.18em;
+  letter-spacing: 1px;
+  border-top: 2.5px solid #fff;
+  border-left: 2.5px solid #fff;
+  border-right: 2.5px solid #bababa;
+  border-bottom: 2.5px solid var(--mircdark);
+  box-shadow: none;
+  padding: 8px 12px;
+}
+
+/* mIRC blue for titles */
+.mirc-title {
+  color: var(--mircblue);
+}
+
+/* Nicknames in chat */
+.mirc-nick {
+  color: var(--mircblue);
+  font-weight: bold;
+  font-family: inherit;
+}
+.mirc-nick-active {
+  color: var(--mircred) !important;
+}
+
+/* Highlight selected conversation row */
+.active-mirc,
+.active-mirc a {
+  background: var(--mircred) !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/* Links */
+a.link-info, a.link-info:visited {
+  color: var(--mircblue);
+  text-decoration: underline;
+}
+a.link-info:hover {
+  color: var(--mircred);
+}
+
+/* List items and forms */
+.list-group-item {
+  background: var(--mirclight);
+  color: var(--mircblack);
+  border-bottom: 1px solid var(--mircgray);
+  font-size: 1.08em;
+}
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  color: var(--mircblack);
+  font-size: 1.05em;
+}
+
+input[type="text"], textarea.form-control {
+  border: 2px solid var(--mircdark);
+  background: var(--mirclight);
+  color: var(--mircblack);
+  font-family: inherit;
+  font-size: 1.07em;
+  padding: 8px 10px;
+}
+
+input[type="text"]:focus, textarea:focus {
+  outline: 2px solid var(--mircblue);
+  background: #eef6ff;
+}
+
+.btn {
+  background: var(--mircgray);
+  color: var(--mircblack);
+  border: 2px solid var(--mircdark);
+  font-weight: bold;
+  font-family: inherit;
+  margin-top: 4px;
+}
+.btn:hover {
+  background: var(--mirclight);
+  color: var(--mircblue);
+  border-color: var(--mircblue);
+}
+
+/* Messages */
+.mirc-message { color: var(--mircblack); }
+
+/* Alerts */
+.alert {
+  border-radius: 0;
+  border: 2px solid var(--mircpurple);
+  background: #fff2f2;
+  color: var(--mircpurple);
+  font-family: inherit;
+  font-size: 1.07em;
+}

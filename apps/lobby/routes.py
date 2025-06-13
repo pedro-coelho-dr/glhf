@@ -10,7 +10,7 @@ from apps.lobby.logic.auth_state import save_pre_auth, load_pre_auth, delete_pre
 from apps.lobby.logic.two_fa import generate_or_get_global_2fa_code
 
 from common.session import get_current_user, generate_token
-from common.users import load_users, hash_password
+from common.users import get_user_by_username, get_user_by_id, username_exists, email_exists, hash_password
 
 
 LOBBY_DIR = Path(__file__).resolve().parent
@@ -35,9 +35,7 @@ def login():
     if request.method == 'POST':
         username_input = request.form.get('username', '')
         password = request.form.get('password', '')
-        users = load_users()
-
-        user = next((u for u in users if u['username'] == username_input), None)
+        user = get_user_by_username(username_input)
         error_message = 'Invalid credentials.'
 
         if not user:
@@ -71,8 +69,7 @@ def two_fa():
         delete_pre_auth(token)
         return redirect('/login')
 
-    users = load_users()
-    user = next((u for u in users if u['id'] == state['id']), None)
+    user = get_user_by_id(state['id'])
 
     if not user:
         return redirect('/login')
@@ -109,6 +106,7 @@ def two_fa():
     return render_template('2fa.html', error=error)
 
 
+
 @lobby_bp.route('/register', methods=['GET', 'POST'])
 def register():
     submitted_username = ''
@@ -118,16 +116,14 @@ def register():
         submitted_username = request.form.get('username', '')
         email_input = request.form.get('email', '')
         password = request.form.get('password', '')
-        users = load_users()
 
-        username_exists = any(u['username'] == submitted_username for u in users)
-        email_exists = any(u.get('email') == email_input for u in users if u.get('email'))
+        uname_exists = username_exists(submitted_username)
+        email_in_use = email_exists(email_input)
 
-        if username_exists and email_exists:
+        if uname_exists and email_in_use:
             time.sleep(SLOW_DELAY)
-        elif username_exists or email_exists:
+        elif uname_exists or email_in_use:
             time.sleep(FAST_DELAY)
-
         else:
             time.sleep(0.01)
             add_pending_user(submitted_username, password, email_input)

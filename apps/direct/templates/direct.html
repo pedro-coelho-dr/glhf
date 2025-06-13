@@ -1,10 +1,115 @@
 {% extends "base_direct.html" %}
 
-{% block title %}GLHF - direct{% endblock %}
+{% block title %}GLHF - Direct Chat{% endblock %}
 
 {% block content %}
-  <div class="text-center">
-    <h2 class="mb-4">Welcome to Your direct</h2>
-    <p>This is just a mockup to test the base layout, navbar, and styling.</p>
+<div class="container">
+
+  <!-- Conversations -->
+  <div class="card" id="conversations">
+    <div class="card-header mirc-title">Conversations</div>
+    <ul class="list-group list-group-flush">
+      {% for user in conversations %}
+        <li class="list-group-item {% if user == selected_chat %}active-mirc{% endif %}">
+          <span style="color: #005fff;">*</span>
+          <a href="{{ url_for('direct.direct', to_user=user) }}"
+             class="link-info mirc-nick{% if user == selected_chat %} mirc-nick-active{% endif %}">
+            {{ user }}
+          </a>
+        </li>
+      {% else %}
+        <li class="list-group-item text-muted">
+          <span style="color: #d70000;">*</span> No conversations yet.
+        </li>
+      {% endfor %}
+    </ul>
   </div>
+
+  <!-- Chat Area -->
+  {% if selected_chat %}
+    <div class="card" id="chat-log">
+      <div class="card-header mirc-title">
+        Chat with <span class="mirc-nick mirc-nick-active">{{ selected_chat }}</span>
+      </div>
+      <div class="card-body">
+
+        <!-- Search bar for demo -->
+        <form id="searchForm" onsubmit="return false;" style="margin-bottom: 8px;">
+          <input
+            type="text"
+            id="chat-search"
+            class="form-control"
+            placeholder="search"
+            style="max-width:110px; display:inline-block; font-size:1em; height: 1.8em; padding: 2px 6px; margin-bottom: 2px;"
+            autocomplete="off"
+          >
+        </form>
+
+        <ul class="list-unstyled" id="chat-messages">
+          {% for msg in chat_history %}
+            <li>
+              <span class="mirc-nick" style="color: {% if msg.sender == user.username %}#005fff{% else %}#d70000{% endif %};">
+                &lt;{{ msg.sender }}&gt;
+              </span>
+              <span class="mirc-message">{{ msg.text|safe }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Send Message -->
+  <div class="card" id="chat-form">
+    <div class="card-header mirc-title">Send Message</div>
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('direct.direct') }}">
+        <label for="to_user" class="form-label">To:</label>
+        <input type="text" class="form-control" id="to_user" name="to_user" autocomplete="off"
+               placeholder="username" value="{{ request.form.get('to_user', '') or selected_chat or '' }}">
+
+        <label for="message" class="form-label" style="margin-top:8px;">Message:</label>
+        <textarea class="form-control" id="message" name="message" rows="2"
+                  placeholder="Type your message">{{ request.form.get('message', '') }}</textarea>
+
+        <button type="submit" class="btn" style="width:100%; margin-top:12px;">Send</button>
+      </form>
+    </div>
+    {% if error %}
+      <div class="alert mt-2">{{ error|safe }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- DOM XSS/highlight demo -->
+<script>
+(function() {
+  var search = document.getElementById('chat-search');
+  var chatList = document.getElementById('chat-messages');
+  if (search && chatList) {
+    search.addEventListener('input', function() {
+      var keyword = search.value;
+      // For each message in chat
+      var msgs = chatList.querySelectorAll('.mirc-message');
+      msgs.forEach(function(msg) {
+        // Reset first!
+        msg.innerHTML = msg.textContent;
+        // Highlight and allow DOM XSS
+        if (keyword) {
+          // Danger: This allows HTML in keyword to be injected (DOM-based XSS)
+          // Replace all occurrences of the keyword (case-insensitive) with a highlight
+          var re = new RegExp(keyword, "gi");
+          msg.innerHTML = msg.innerHTML.replace(re, function(match) {
+            return '<mark style="background:yellow;">' + match + '</mark>';
+          });
+          // If keyword looks like HTML, inject it directly (vulnerable!)
+          if (/<.*?>/.test(keyword)) {
+            msg.innerHTML += keyword;
+          }
+        }
+      });
+    });
+  }
+})();
+</script>
 {% endblock %}

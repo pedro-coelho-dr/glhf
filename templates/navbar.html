@@ -2,5 +2,10 @@
   <a href="/user" class="editor-tab {% if page == 'user' %}active{% endif %}">user</a>
   <a href="/direct" class="editor-tab {% if page == 'direct' %}active{% endif %}">direct</a>
   <a href="/board" class="editor-tab {% if page == 'board' %}active{% endif %}">board</a>
-  <a href="/logout" class="editor-tab exit">exit</a>
+  <a href="/resetdb" class="editor-tab reset" title="Reset Database">
+    <span class="material-symbols-outlined">refresh</span>
+  </a>
+  <a href="/logout" class="editor-tab exit" title="Logout">
+    <span class="material-symbols-outlined">logout</span>
+  </a>
 </div>

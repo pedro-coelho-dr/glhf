@@ -1,11 +1,10 @@
 from flask import request, render_template, redirect
 from apps.user import user_bp
 
-from common.session import (
-    get_current_user,
-    get_user_by_id,
-    get_user_by_username,
-)
+from common.session import get_current_user
+
+from common.users import get_user_by_username, get_user_by_id
+
 from apps.user.logic.users import update_password, update_avatar_file, update_bio 
 
 
