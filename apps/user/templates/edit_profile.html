@@ -4,7 +4,6 @@
 <div class="d-flex justify-content-center mt-2">
   <div class="card edit-profile-form text-light">
     <div class="edit-form-inner py-4">
-      <!-- Signature -->
       <form method="post" action="/profile/edit_bio" class="mb-0">
         <label for="signature" class="form-label">Signature</label>
           <textarea class="form-control form-control-sm" id="signature" name="bio" rows="3" maxlength="160"
@@ -17,9 +16,7 @@
 
       <div class="divider-h my-4"></div>
 
-      <!-- Avatar | Password -->
       <div class="row align-items-start gx-4">
-        <!-- Avatar -->
         <div class="col-md-6 pe-md-4 divider-v-md">
           <form method="post" action="/profile/edit_avatar" enctype="multipart/form-data" class="mb-0">
             <label for="avatar" class="form-label">Avatar</label>
@@ -33,7 +30,6 @@
             </div>
           </form>
         </div>
-        <!-- Password -->
         <div class="col-md-6 ps-md-4">
           <form method="post" action="/profile/edit_password" class="mb-0">
             <label for="password" class="form-label">New Password</label>

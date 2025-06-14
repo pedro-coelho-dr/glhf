@@ -100,7 +100,7 @@ def two_fa():
             delete_pre_auth(token)
             return resp
         else:
-            time.sleep(0.025)
+            time.sleep(0.001)
             error = 'Invalid code.'
 
     return render_template('2fa.html', error=error)

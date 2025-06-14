@@ -4,7 +4,6 @@
 {% block content %}
 <div class="arch-terminal-root">
 
-    <!-- Terminal (Shell) -->
   <div class="terminal-block">
     <pre class="terminal-title">root@glhf:~</pre>
     <form method="post" class="terminal-form" autocomplete="off">
@@ -15,7 +14,6 @@
     <pre class="command-output">{{ output|safe }}</pre>
   </div>
 
-  <!-- SQL Interface -->
   <div class="terminal-block">
     <pre class="terminal-title">sqlite> glhf.db</pre>
     <form method="post" class="terminal-form" autocomplete="off">
@@ -26,13 +24,11 @@
     <pre class="command-output">{{ sql_output|safe }}</pre>
   </div>
 
-  <!-- Download source -->
   <div class="terminal-block">
     <span class="terminal-title">[download]</span>
     <a href="/root/download_source" class="download-link">source_leak.tar</a>
   </div>
 
-  <!-- pending_users.json -->
   <div class="terminal-block">
     <span class="terminal-title">pending_users.json</span>
     <pre class="json-output">{{ pending }}</pre>

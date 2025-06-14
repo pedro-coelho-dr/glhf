@@ -44,8 +44,6 @@ def add_comment(board_id, author_id, body):
         conn.commit()
         return cur.lastrowid
 
-
-## vuln
 def get_board_by_id(board_id):
     with get_db() as conn:
         cur = conn.cursor()

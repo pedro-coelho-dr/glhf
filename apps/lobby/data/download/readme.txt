@@ -75,5 +75,5 @@ Keep your notes organized.
 You'll need them to write your report later.
 
 --------------------------------------------------------
-GHLF v0.1.0-alpha
+GHLF v0.1-beta
 Corisco 2025
