@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+  background: linear-gradient(120deg, #10141c 0%, #07090c 100%);
+  color: #a2ffb4;
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.notfound-container {
+  margin: 12vh auto 0 auto;
+  max-width: 520px;
+  background: rgba(12, 16, 18, 0.96);
+  border-radius: 10px;
+  border: 1.5px solid #25ff8a;
+  box-shadow: 0 0 32px #25ff8a22, 0 0 4px #000c;
+  padding: 54px 40px 46px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.notfound-container h1 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 3rem;
+  color: #25ff8a;
+  letter-spacing: 2.5px;
+  margin-bottom: 26px;
+  line-height: 1.1;
+  text-shadow: 0 0 10px #13ff9544, 0 2px 6px #193a2d55;
+  filter: brightness(1.04) contrast(1.18);
+  user-select: text;
+}
+
+.subtitle {
+  color: #a2ffb4;
+  font-size: 1.18rem;
+  margin-bottom: 32px;
+  letter-spacing: .5px;
+  text-shadow: 0 0 2px #21ff7d33;
+}
+
+.notfound-path {
+  margin-top: 33px;
+  color: #60ffbb;
+  font-size: 1.04rem;
+  letter-spacing: 0.4px;
+  text-shadow: 0 0 2px #21ff7d33;
+  opacity: .84;
+}
+
+.notfound-path code {
+  color: #cfffec;
+  background: #102217;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: .98em;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .notfound-container {
+    padding: 28px 3vw 18px 3vw;
+    max-width: 97vw;
+  }
+  .notfound-container h1 {
+    font-size: 1.7rem;
+  }
+}
+
+.glitch-404 {
+  display: inline-block;
+  font-size: 4.4rem;
+  color: #25ff8a;
+  letter-spacing: 2px;
+  position: relative;
+  filter: brightness(1.15) contrast(1.25);
+  animation: glitch404 1.2s infinite alternate;
+  /* Glitch Layers */
+}
+.glitch-404::before,
+.glitch-404::after {
+  content: '404';
+  position: absolute;
+  left: 0; top: 0;
+  opacity: 0.66;
+  pointer-events: none;
+}
+.glitch-404::before {
+  color: #ff00aa;
+  z-index: 2;
+  transform: translate(-2px, 2px);
+  mix-blend-mode: lighten;
+  animation: glitch404b 0.86s infinite alternate-reverse;
+}
+.glitch-404::after {
+  color: #00fff9;
+  z-index: 2;
+  transform: translate(2px, -2px);
+  mix-blend-mode: lighten;
+  animation: glitch404c 0.92s infinite alternate;
+}
+
+/* Glitch Animation Keyframes */
+@keyframes glitch404 {
+  0%   { transform: none; }
+  15%  { transform: skewX(-5deg); }
+  20%  { transform: translateY(2px) scale(1.08); }
+  30%  { transform: skewX(2deg); }
+  35%  { transform: translate(-2px, 1px); }
+  45%  { transform: skewY(-2deg); }
+  50%  { transform: translateY(-1px) scale(1.06);}
+  55%  { transform: skewX(0); }
+  100% { transform: none; }
+}
+
+@keyframes glitch404b {
+  0%   { opacity: .16; transform: translate(-1px, 0px);}
+  20%  { opacity: .4;  transform: translate(-3px, 1px);}
+  35%  { opacity: .23; transform: translate(-2px, 2px);}
+  50%  { opacity: .11; transform: translate(-4px, -1px);}
+  65%  { opacity: .5;  transform: translate(-2px, 0px);}
+  100% { opacity: .19; transform: translate(-1px, 0px);}
+}
+
+@keyframes glitch404c {
+  0%   { opacity: .18; transform: translate(1px, 0px);}
+  25%  { opacity: .3;  transform: translate(2px, -1px);}
+  40%  { opacity: .27; transform: translate(3px, 1px);}
+  60%  { opacity: .13; transform: translate(2px, 2px);}
+  85%  { opacity: .4;  transform: translate(4px, -2px);}
+  100% { opacity: .21; transform: translate(1px, 0px);}
+}

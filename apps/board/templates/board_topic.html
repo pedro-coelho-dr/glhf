@@ -1,0 +1,44 @@
+{% extends "base_board.html" %}
+{% block title %}{{ board.title }} - GLHF Board{% endblock %}
+{% block content %}
+<div class="forum-board">
+  <div class="forum-header" style="color: #ea3191;">{{ board.title }}</div>
+  <div class="topic-row">
+    <div class="topic-details">
+      <div class="topic-meta">
+        by <a href="/user/{{ board.author_name }}" style="color:#385e1a;">{{ board.author_name }}</a>
+        on {{ board.created_at[:16] if board.created_at else '' }}
+      </div>
+      <div class="topic-body mt-2">{{ board.body }}</div>
+    </div>
+  </div>
+  <hr>
+  <div class="topic-comments">
+    <h6 class="ms-3 mt-3 mb-2 text-secondary">Replies ({{ comments|length }})</h6>
+    {% for comment in comments %}
+      <div class="comment-row d-flex align-items-start px-4 py-3">
+        <div class="ms-3">
+          <div class="topic-meta">
+            <b><a href="/user/{{ comment.author_name }}" style="color:#385e1a; text-decoration: none;">{{ comment.author_name }}</a></b>
+            <span class="text-muted ms-2" style="font-size:.89em">{{ comment.created_at[:16] if comment.created_at else '' }}</span>
+          </div>
+          <div class="comment-body mt-1">{{ comment.body }}</div>
+        </div>
+      </div>
+    {% else %}
+      <div class="text-center text-muted py-3">No replies yet.</div>
+    {% endfor %}
+  </div>
+  <hr>
+  <!-- Reply form -->
+  <div class="px-4 py-3">
+    <form method="POST" action="{{ url_for('board.board_reply', board_id=board.id) }}">
+      <div class="mb-3">
+        <textarea name="body" class="form-control" placeholder="Write a reply..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Reply</button>
+    </form>
+  </div>
+  <a href="{{ url_for('board.board_home') }}" style="color: #ea3191; text-decoration: none; margin-left: 32px; font-weight: bold;">← Back to Board</a>
+</div>
+{% endblock %}

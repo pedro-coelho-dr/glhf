@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, abort
 from apps.user import user_bp
 
 from common.session import get_current_user
@@ -15,7 +15,7 @@ def public_user(username):
         return redirect("/login")
     user = get_user_by_username(username)
     if not user:
-        return render_template("user_not_found.html", username=username), 404
+        return abort(404)
     return render_template("public_profile.html", user=user, page="user")
 
 @user_bp.route("/user")
@@ -28,7 +28,7 @@ def user_by_id():
         return redirect("/")
     user = get_user_by_id(user_id)
     if not user:
-        return render_template("user_not_found.html"), 404
+        return abort(404)
     return render_template("public_profile.html", user=user, page="user")
 
 @user_bp.route("/profile")

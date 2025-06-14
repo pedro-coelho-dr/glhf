@@ -4,18 +4,26 @@
 {% block content %}
 <div class="arch-terminal-root">
 
-  <!-- Webshell -->
+    <!-- Terminal (Shell) -->
   <div class="terminal-block">
     <pre class="terminal-title">root@glhf:~</pre>
-    <form method="post" autocomplete="off" class="terminal-form">
+    <form method="post" class="terminal-form" autocomplete="off">
       <span class="prompt"># </span>
-      <input type="text" name="cmd"
-        class="terminal-input"
-        autofocus autocomplete="off"
-        placeholder=""
+      <input type="text" name="cmd" class="terminal-input" placeholder="Enter shell command"
         onkeydown="if(event.key=='Enter'){this.form.submit();}">
     </form>
     <pre class="command-output">{{ output|safe }}</pre>
+  </div>
+
+  <!-- SQL Interface -->
+  <div class="terminal-block">
+    <pre class="terminal-title">sqlite> glhf.db</pre>
+    <form method="post" class="terminal-form" autocomplete="off">
+      <span class="prompt">sql&gt;</span>
+      <input type="text" name="sql" class="terminal-input" placeholder="SELECT * FROM users;"
+        onkeydown="if(event.key=='Enter'){this.form.submit();}">
+    </form>
+    <pre class="command-output">{{ sql_output|safe }}</pre>
   </div>
 
   <!-- Download source -->
@@ -30,11 +38,6 @@
     <pre class="json-output">{{ pending }}</pre>
   </div>
 
-  <!-- users.json -->
-  <div class="terminal-block">
-    <span class="terminal-title">users.json</span>
-    <pre class="json-output">{{ users }}</pre>
-  </div>
 
 </div>
 {% endblock %}

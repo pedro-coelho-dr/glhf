@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, request, redirect
+from flask import Flask, send_from_directory, request, redirect, render_template
 from apps.lobby import lobby_bp
 from apps.user import user_bp
 from apps.direct import direct_bp
@@ -18,6 +18,10 @@ def resetdb():
     reset_database()
     referer = request.headers.get("Referer")
     return redirect(referer or "/")
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html', path=request.path), 404
 
 app.register_blueprint(lobby_bp)
 app.register_blueprint(user_bp)

@@ -1,0 +1,33 @@
+{% extends "base_board.html" %}
+{% block title %}GLHF - Board{% endblock %}
+{% block content %}
+<div class="forum-board">
+  <div class="forum-header" style="color: #ea3191;">Board</div>
+  <div class="forum-topbar">
+    <form class="forum-searchbar" method="GET" action="{{ url_for('board.board_search') }}">
+      <input type="text" name="q" placeholder="Search topics…">
+      <button type="submit">search</button>
+    </form>
+    <a href="{{ url_for('board.board_new') }}" class="btn btn-primary">New Topic</a>
+  </div>
+  {% if boards %}
+    {% for board in boards %}
+      <div class="topic-row">
+        <div class="topic-details">
+          <a href="{{ url_for('board.board_topic', board_id=board.id) }}" class="topic-title">{{ board.title }}</a>
+          <div class="topic-meta">
+            by <a href="/user/{{ board.author_name }}" style="color:#385e1a;">{{ board.author_name }}</a>
+            on {{ board.created_at[:16] if board.created_at else '' }} |
+            {{ board.reply_count }} replies
+          </div>
+          <div class="topic-preview text-muted">
+            {{ board.body[:120] }}{% if board.body|length > 120 %}...{% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="p-4 text-center text-muted">No topics yet. Be the first to post!</div>
+  {% endif %}
+</div>
+{% endblock %}

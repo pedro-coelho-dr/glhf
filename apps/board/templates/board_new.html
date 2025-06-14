@@ -1,0 +1,21 @@
+{% extends "base_board.html" %}
+{% block title %}New Topic - GLHF Board{% endblock %}
+{% block content %}
+<div class="forum-board">
+  <div class="forum-header" style="color: #ea3191;">New Topic</div>
+  <form class="px-4 py-4" method="POST" action="{{ url_for('board.board_new') }}">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input name="title" id="title" type="text" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Message</label>
+      <textarea name="body" id="body" class="form-control" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Post Topic</button>
+  </form>
+  <a href="{{ url_for('board.board_home') }}" style="color: #ea3191; text-decoration: none; margin-left: 32px; font-weight: bold;">← Back to Board</a>
+
+</div>
+
+{% endblock %}

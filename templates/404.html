@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}404 Not Found - GLHF{% endblock %}
+
+{% block page_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="notfound-container">
+    <h1>
+        glhf{<span class="glitch-404">404</span>}
+    </h1>
+    <p class="subtitle">You’ve reached a null pointer.</p>
+    {% if path %}
+    <p class="notfound-path"><code>{{ path }}</code></p>
+    {% endif %}
+</div>
+
+{% endblock %}
