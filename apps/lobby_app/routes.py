@@ -28,6 +28,9 @@ def index():
     if not user:
         return redirect('/login')
 
+    if not user.get('verified', False):
+        return redirect('/2fa')
+
     return render_template('index.html', username=user['username'])
 
 @lobby_bp.route('/login', methods=['GET', 'POST'])
@@ -55,7 +58,7 @@ def login():
 
         else:
             role = user.get('role', 'user')
-            token = generate_token(username_input, role)
+            token = generate_token(username_input, role, verified=False)
 
             resp = make_response(redirect('/2fa'))
             resp.set_cookie('session_id', token)
@@ -94,11 +97,17 @@ def two_fa():
     if not user:
         return redirect('/login')
 
+    if user.get('verified', False):
+        return redirect('/')
+
     error = ''
     if request.method == 'POST':
         code_input = request.form.get('code', '')
         if code_input == '1337':
-            return redirect('/')
+            new_token = generate_token(user['username'], user['role'], verified=True)
+            resp = make_response(redirect('/'))
+            resp.set_cookie('session_id', new_token)
+            return resp
         else:
             time.sleep(0.5)
             error = 'Invalid 2FA code. <!-- 2fa:0 -->'
